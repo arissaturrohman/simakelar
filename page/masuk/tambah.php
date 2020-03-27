@@ -92,6 +92,7 @@ if (isset($_POST['simpan'])) {
   $asal_surat = $_POST['asal'];
   $tgl_agenda = $_POST['tgl_agenda'];
   $kla        = $_POST['kla'];
+  $dispo      = 0;
 
   $foto       = $_FILES['foto']['name'];
   $source     = $_FILES['foto']['tmp_name'];
@@ -107,7 +108,7 @@ if (isset($_POST['simpan'])) {
 
   move_uploaded_file($source, $folder.$gambar);
 
-  $sql = $conn->query("INSERT INTO tb_masuk (no_masuk, tgl_masuk, isi, asal, tgl_agenda, foto, kla)
+  $sql = $conn->query("INSERT INTO tb_masuk (no_masuk, tgl_masuk, isi, asal, tgl_agenda, foto, kla, dispo)
   VALUES (
     '$no_agenda',
     '$tgl_masuk',
@@ -115,7 +116,8 @@ if (isset($_POST['simpan'])) {
     '$asal_surat',
     '$tgl_agenda',
     '$gambar',
-    '$kla'
+    '$kla',
+    '$dispo'
       )");
 
   if ($sql) {
